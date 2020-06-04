@@ -4,4 +4,7 @@
   <a routerLink="page3" routerLinkActive="active">Third</a>
   <a routerLink="page4" routerLinkActive="active">Fourth</a>
 </header>
-<router-outlet></router-outlet>
+
+<div [@routeAnimations]="o && o.activatedRouteData && o.activatedRouteData['animation']">
+    <router-outlet #o="outlet"></router-outlet>
+</div>

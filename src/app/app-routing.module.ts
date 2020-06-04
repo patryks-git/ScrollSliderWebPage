@@ -7,10 +7,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  {path: 'page1', component: FirstPageComponent},
-  {path: 'page2', component: SecondPageComponent},
-  {path: 'page3', component: ThirdPageComponent},
-  {path: 'page4', component: FourthPageComponent}
+  {path: '', pathMatch: 'full', redirectTo: "/page1"},
+  {path: 'page1', component: FirstPageComponent, data: {animation: 'First'}},
+  {path: 'page2', component: SecondPageComponent, data: {animation: 'Second'}},
+  {path: 'page3', component: ThirdPageComponent, data: {animation: 'Third'}},
+  {path: 'page4', component: FourthPageComponent, data: {animation: 'Fourth'}}
 ];
 
 @NgModule({
