@@ -1,29 +1,11 @@
-body {
-  margin: 0;
-  padding: 0;
+html{
+    font-family: Tahoma;
 }
 
-header {
-  display: flex;
-  background: #333;
-  justify-content: center;
 
-  a {
-    color: white;
-    text-decoration: none;
-    padding: 20px 20px;
-    font-size: 20px;
-
-    &:hover, &.active {
-      background: white;
-      color: #333;
-    }
-  }
-}
 
 .box {
-  height: 500px;
-  margin: 20px;
+  height: 600px;
   display: flex;
   color: white;
   justify-content: center;
@@ -31,6 +13,7 @@ header {
 
   h1 {
     font-size: 60px;
+
   }
 
   &.box1 {
