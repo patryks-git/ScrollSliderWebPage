@@ -1,12 +1,6 @@
 <div>
-  <!--<header>
-    <a routerLink="page1" routerLinkActive="active">First</a>
-    <a routerLink="page2" routerLinkActive="active">Second</a>
-    <a routerLink="page3" routerLinkActive="active">Third</a>
-    <a routerLink="page4" routerLinkActive="active">Fourth</a>
-  </header>-->
-
-  <div [@routeAnimations]="o && o.activatedRouteData && o.activatedRouteData['animation']">
+  <div [@routeAnimations]="o && o.activatedRouteData && o.activatedRouteData['animation']"
+       (@routeAnimations.done)="animationDone($event)">
     <router-outlet #o="outlet"></router-outlet>
   </div>
 </div>

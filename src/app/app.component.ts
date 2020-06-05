@@ -1,6 +1,6 @@
-import { Component, HostListener, ElementRef, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { slideUpDownAnimation } from './route-animations';
-import { Route, Router } from '@angular/router';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +10,21 @@ import { Route, Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private router: Router, private ref: ElementRef) { }
+  constructor(private router: Router) { }
 
-  title = 'ScrollSliderWebPage';
+  components = ['/page1', '/page2', '/page3', '/page4'];
+  currentComponent: number;
 
-  public components = ['/page1', '/page2', '/page3', '/page4'];
-  public currentComponent: number;
+  private enableRouting = true;
 
+
+  ngOnInit() {
+    this.currentComponent = this.components.indexOf(window.location.pathname);
+  }
+
+  animationDone($event) {
+    this.enableRouting = true;
+  }
 
   @HostListener('mousewheel', ['$event']) onMouseWheelChrome(event: any) {
     this.mouseWheelFunc(event);
@@ -28,21 +36,19 @@ export class AppComponent implements OnInit {
     this.mouseWheelFunc(event);
   }
 
-  ngOnInit(): void {
-    this.router.navigate(['/page1']);
-    this.currentComponent = 0;
-  }
 
   mouseWheelFunc = (event: any) => {
+    if (this.enableRouting) {
       if (event.wheelDelta >= 0) this.navigateToPrevious();
-      else if (event.wheelDelta < 0) this.navigateToNext();
-      else return;
+      else this.navigateToNext();
+    }
   }
 
   private navigateToNext() {
     if (this.currentComponent + 1 < this.components.length) {
       let path = this.components[++this.currentComponent];
       this.router.navigate([path]);
+      this.enableRouting = false;
     }
   }
 
@@ -50,6 +56,7 @@ export class AppComponent implements OnInit {
     if (this.currentComponent > 0) {
       let path = this.components[--this.currentComponent];
       this.router.navigate([path]);
+      this.enableRouting = false;
     }
   }
 }
