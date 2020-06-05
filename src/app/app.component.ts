@@ -40,7 +40,6 @@ export class AppComponent implements OnInit {
   }
 
   private navigateToNext() {
-    console.log("PageUp");
     if (this.currentComponent + 1 < this.components.length) {
       let path = this.components[++this.currentComponent];
       this.router.navigate([path]);
@@ -48,7 +47,6 @@ export class AppComponent implements OnInit {
   }
 
   private navigateToPrevious() {
-    console.log("PageDown");
     if (this.currentComponent > 0) {
       let path = this.components[--this.currentComponent];
       this.router.navigate([path]);
