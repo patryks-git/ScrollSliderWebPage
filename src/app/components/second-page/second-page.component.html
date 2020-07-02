@@ -1,3 +1,13 @@
 <div class="box box2">
-    <h1>Second Page</h1>
+  <div>
+    <h2>Students async Observable with AsyncPipe:</h2>
+    <ul>
+      <li *ngFor="let student of students$ | async ">{{ student.name }}</li>
+    </ul>
+
+    <h2>Students sync Observable with AsyncPipe:</h2>
+    <ul>
+      <li *ngFor="let student of students2$ | async">{{ student.name }}</li>
+    </ul>
+  </div>
 </div>
