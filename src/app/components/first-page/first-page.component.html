@@ -1,6 +1,26 @@
 <div class="box box1">
-    <h1>First Page</h1>
-    <select>
-        <option *ngFor="let user of users">{{ user.login }}</option>
-    </select>
+    <form [formGroup]="userForm">
+        <select formControlName="login">
+            <option [ngValue]="null" disabled>Choose the user</option>
+            <option *ngFor="let user of users" [ngValue]="user.login">{{ user.login }}</option>
+        </select>
+        <button (click)="getUserInfo()" style="margin-left: 10px;">Get user info</button>
+        <div>
+            <h3>User info</h3>
+            <label *ngIf="message != null" style="color: red;">{{ message }}</label>
+            <div>
+                Login*: <input type="text" formControlName="login" />
+            </div>
+            <div>
+                Id*: <input type="text" formControlName="id" />
+            </div>
+            <div>
+                Type*: <input type="text" formControlName="type" />
+            </div>
+            <div>
+                Is site admin: <input type="checkbox" formControlName="siteAdmin" />
+            </div>
+            <button (click)="addNewUser()">Add new user</button>
+        </div>
+    </form>
 </div>
