@@ -1,24 +1,31 @@
 <div class="box box1">
     <form [formGroup]="userForm">
-        <select formControlName="login">
-            <option [ngValue]="null" disabled>Choose the user</option>
-            <option *ngFor="let user of users" [ngValue]="user.login">{{ user.login }}</option>
-        </select>
-        <button (click)="getUserInfo()" style="margin-left: 10px;">Get user info</button>
+        Filter starts with: <input type="text" formControlName="filterStartsWith" />
+        <div>
+            <select formControlName="_id">
+                <option [ngValue]="null" disabled>Choose the user</option>
+                <option *ngFor="let user of users" [ngValue]="user._id">{{ user.login }}</option>
+            </select>
+            <button (click)="getUserInfo()" style="margin-left: 10px;">Get user info</button>
+            <button (click)="deleteUser()" style="margin-left: 10px;">Delete user</button>
+        </div>
         <div>
             <h3>User info</h3>
             <label *ngIf="message != null" style="color: red;">{{ message }}</label>
             <div>
+                Id*: <input type="text" formControlName="_id" disabled />
+            </div>
+            <div>
                 Login*: <input type="text" formControlName="login" />
             </div>
             <div>
-                Id*: <input type="text" formControlName="id" />
+                Email*: <input type="text" formControlName="email" />
             </div>
             <div>
                 Type*: <input type="text" formControlName="type" />
             </div>
             <div>
-                Is site admin: <input type="checkbox" formControlName="siteAdmin" />
+                Is admin: <input type="checkbox" formControlName="isAdmin" />
             </div>
             <button (click)="addNewUser()">Add new user</button>
         </div>
